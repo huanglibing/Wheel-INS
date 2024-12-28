@@ -17,18 +17,23 @@
 #include "wheel_ins/wheelins.h"
 
 int main(int argc, char *argv[]) {
-  if (argc != 2) {
-    std::cout << "usage: Wheel-INS config.yaml" << std::endl;
-    return -1;
+  // Determine the configuration file path
+  std::string config_path;
+
+  if (argc == 2) {
+    config_path = argv[1];
+  } else {
+    config_path = "../config/robot.yaml";  // Default configuration path
+    std::cout << "No configuration file provided. Using default: "
+              << config_path << std::endl;
   }
 
   YAML::Node config;
   try {
-    config = YAML::LoadFile(argv[1]);
-
-  } catch (YAML::Exception &exception) {
-    std::cout << "Failed to read configuration file: " << exception.what()
-              << std::endl;
+    config = YAML::LoadFile(config_path);
+  } catch (const YAML::Exception &exception) {
+    std::cout << "Failed to read configuration file (" << config_path << "): "
+              << exception.what() << std::endl;
     return -1;
   }
 

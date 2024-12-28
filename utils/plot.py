@@ -5,10 +5,10 @@ import os
 
 platform = "robot"  # robot or car
 # Common base directory
-base_dir = "yourpath\\Wheel-INS" if os.name == "nt" else "~/Wheel-INS"
+base_dir = "D:\\ClionProject\\Wheel-INS" if os.name == "nt" else "~/Wheel-INS"
 
 # Platform-specific paths
-path = os.path.join(base_dir, "output", platform, "traj.txt")
+path = os.path.join(base_dir, "bin\\output", platform, "traj.txt")
 imupath = os.path.join(base_dir, "dataset", platform, "Wheel-IMU", "C1_imu.bin")
 
 num_columns = 7
